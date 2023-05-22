@@ -10,7 +10,7 @@ namespace EnglishTutor.Entities
 {
     internal class OpenAITutor
     {
-        private string _apiKey = "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";
+        private string _apiKey = "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";
 
         public async Task question(string message)
         {

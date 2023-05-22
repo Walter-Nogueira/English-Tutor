@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;600;700&display=swap');
+
+*{
+    font-family: 'Roboto Mono', monospace;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f2f2f2;
+  }
+  
+  .image {
+    margin-top: -300px ;
+  }
+  
+  .terminal {
+    margin-top: -200px;
+    width: 1100px;
+    height: 700px;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .input-container {
+    border-top: 1px solid #b3b3b3;
+    position: relative;
+    padding: 30px;
+    background-color: #f0f0f0;
+  }
+  
+  .input-container input {    
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-size: 18px;
+    outline: none;
+  }
+
+  .input-container input:required::placeholder{
+    color: b3b3b3;
+  }
+
+  .input-container input::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    background-color: #000;
+    animation: cursor-blink 1s infinite;
+  }
+  
+
+  @keyframes cursor-blink {
+    0%, 50% {
+      background-color: #000;
+    }
+    51%, 100% {
+      background-color: transparent;
+    }
+  }
+  
+  .output-container {  
+    flex-grow: 1;
+    padding: 30px;
+    background-color: #fefefe;
+    color: #000;
+    font-size: 18px;
+    overflow: auto;
+    word-wrap: break-word;
+  }
+  
+  
