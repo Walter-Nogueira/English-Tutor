@@ -73,7 +73,7 @@ body {
   border-color: var(--color-marineblue);
 }
 
-#link_sign_up:hover {
+#link_sign_up:hover{
   background-color: var(--color-mediumtealblue);
   border-color: var(--color-mediumtealblue);
   color: var(--color-white);
@@ -104,6 +104,8 @@ body {
 .main_class {
   display: flex;
   width: 100%;
+
+  border-top: #cccccc 1px solid;
 }
 
 .main_input {
@@ -118,27 +120,30 @@ body {
   border-radius: 0px 0px 10px 10px;
   padding-left: 20px;
   font-size: 1em;
-  border-top: #cccccc 1px solid;
   text-decoration: none;
 }
 
 .main_class>.button {
   display: flex;
-  margin-right: 15px;
   align-items: center;
-  border-top: #cccccc 1px solid;
+  margin-right: 15px;
+  margin-left: 3px;
+  background-color: transparent;
 }
 
 .main_class>.button>button {
-  width: 50px;
-  height: 50px;
+  width: 70px;
+  height: 30px;
   border: none;
   cursor: pointer;
-  border-radius: 5px;
+  justify-content: center;
+  border-radius: 10000px;
   color: var(--color-white);
-  border-color: var(--color-mediumtealblue);
+  background-color: var(--color-marineblue);
+}
+.main_class > .button > button:hover {
   background-color: var(--color-mediumtealblue);
-  transition: background-color 0.4s ease-in-out, border-color 0.4s ease-in-out, color 0.4s ease-in-out;
+  transition: background-color 0.4s ease-in-out;
 }
 
 .main_input>.input:focus {
