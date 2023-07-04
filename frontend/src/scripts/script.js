@@ -56,8 +56,6 @@ function UserMessage(){
 
 /* function SendQuestion(){
   let question = `A partir de agora, você irá atuar como um professor de inglês, ajudando estudantes a estudar a língua inglesa. Responda apenas perguntas sobre o estudo da língua. Para qualquer outra pergunta, você deve encontrar uma maneira educada e criativa de dizer que não pode respondê-la. As perguntas dos estudantes estarão entre parênteses (${input.value}) e é a elas que você irá responder.`
-
-  const openAiApiKey = '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';
   
 } */
 
