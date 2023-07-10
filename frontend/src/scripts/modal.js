@@ -32,12 +32,35 @@ signUp.addEventListener('click', () => {
     }
 });
 
+function ApplyStyles(element, style){
+    for (let prop in style){
+        element.style[prop] = style[prop];
+    }
+}
+
 function CreateTextField(labelContent, type, name, autocomplete, placeholder, required){
     let div = Object.assign(document.createElement('div'), {classList: ['text-field']});
+
+    const textFieldStyle = {
+        display: 'flex',
+        flexDirection: 'column',
+        width: '60%',
+        margin: '10px 0px'
+    };
+
+    ApplyStyles(div, textFieldStyle);
 
     let label = document.createElement('label');
     label.setAttribute("for", name);
     label.textContent = labelContent;
+
+    const labelStyle = {
+        fontSize: '0.9em',
+        fontWeight: '500',
+        color: '#818181'
+    };
+
+    ApplyStyles(label, labelStyle);
 
     let input = document.createElement('input');
     input.id = name;
@@ -46,6 +69,17 @@ function CreateTextField(labelContent, type, name, autocomplete, placeholder, re
     input.setAttribute("autocomplete", autocomplete);
     input.setAttribute("placeholder", placeholder);
     input.setAttribute("required", required);
+
+    const inputStyle = {
+        height: '45px',
+        width: '100%',
+        padding: '10px',
+        border: '1px solid var(--color-gray1)',
+        borderRadius: '5px',
+        outline: 'none'
+    };
+
+    ApplyStyles(input, inputStyle);
     
     div.appendChild(label);
     div.appendChild(input);
@@ -76,18 +110,21 @@ function createGoogleButton(value){
     const googleSubmit = document.createElement('div');
     googleSubmit.classList.add('google-submit');
   
-    googleSubmit.style.width = '60%';
-    googleSubmit.style.height = '40px';
-    googleSubmit.style.margin = '20px 0px 75px 0px';
-    googleSubmit.style.borderRadius = '5px';
-    googleSubmit.style.border = 'none';
-    googleSubmit.style.display = 'flex';
-    googleSubmit.style.justifyContent = 'center';
-    googleSubmit.style.alignItems = 'center';
-    googleSubmit.style.fontSize = '0.9em';
-    googleSubmit.style.backgroundColor = 'var(--color-gray3)';
-    googleSubmit.style.gap = '0em';
-  
+    const googleSubmitStyles = {
+        width: '60%',
+        height: '40px',
+        margin: '20px 0px 75px 0px',
+        borderRadius: '5px',
+        border: 'none',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontSize: '0.9em',
+        backgroundColor: 'var(--color-gray3)',
+    };
+
+    ApplyStyles(googleSubmit, googleSubmitStyles);
+    
     const googleSubmitInput = document.createElement('button');
     googleSubmitInput.type = 'submit';
     
@@ -104,6 +141,42 @@ function createGoogleButton(value){
     return fragment;
 }
 
+function CreateTitle(title, subtitle){
+    const div = document.createElement('div');
+    div.id = 'title';
+    div.classList.add('title');
+
+    const h1 = document.createElement('h1');
+    h1.textContent = title;
+
+    const p = document.createElement('p');
+    p.textContent = subtitle;
+
+    div.appendChild(h1);
+    div.appendChild(p)
+
+    const titleStyle = {
+        width: '70%',
+        height: 'auto',
+        display: 'flex',
+        flexDirection:'column',
+        alignItems: 'flex-start',
+        justifyContent: 'center',
+        margin: '0px 0px 0px 30px',
+    }
+
+    ApplyStyles(div, titleStyle);
+
+    h1.style.fontSize = '1.7em';
+    h1.style.fontWeight = '800';
+
+    p.style.fontSize = '0.9em';
+    p.style.color = 'var(--color-gray2)';
+
+    return div;
+}
+
+
 function CreateSignUp(){
     
     const formContent = document.createDocumentFragment();
@@ -119,12 +192,9 @@ function CreateSignUp(){
         imgModal.appendChild(img);
     }
 
-    const tittle = document.createElement('div');
-    tittle.id = 'tittle';
-    tittle.classList.add('tittle');
-    tittle.appendChild(document.createElement('h1')).textContent = 'Get started';
-    tittle.appendChild(document.createElement('p')).textContent = 'Create your account and start learning english today!';
-    formContent.appendChild(tittle);
+    const title = 'Get started';
+    const subtitle = 'Creat your account and start learning english today';
+    formContent.appendChild(CreateTitle(title, subtitle));
 
     const textFieldAttributes = [
         {labelContent: "Full name", type: "text", name: "user", autocomplete: "name", placeholder: "Hideo Kojima", required: true},
@@ -173,6 +243,17 @@ function CreateSignUp(){
     form.id = 'form-content';
     form.method = 'post';
     form.appendChild(formContent);
+
+    const formStyle = {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        flexGrow: '2'
+    };
+
+    ApplyStyles(form, formStyle);
 
     dynamicContent.appendChild(form);
     dynamicContent.appendChild(createGoogleButton('Sign up with Google'));
