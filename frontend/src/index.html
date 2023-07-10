@@ -4,57 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="styles/sign-up-modal.css">
+    <link rel="stylesheet" href="styles/modal.css">
     <script src="https://kit.fontawesome.com/f61966f37d.js" crossorigin="anonymous"></script>
     <title>WordWise | Your AI English Tutor</title>
 </head>
 <body>
     <dialog class="modal" id="modal-sign-up">
         <div class="modal-container">
-            <div class="img-modal" id="img-modal-sign-up">
-                <img src="../assets/svg_modal/English teacher-amico.svg" alt="Studying-cuate">
-            </div>
-            <div class="sign-up-container">
+            <div class="img-modal" id="img-modal"></div>
+            <div class="form-container">
                 <div class="close-button">
                     <button class="btn-close-modal" id="btn-close-login" onclick="CloseModal()">
                         <i class="fa-solid fa-circle-xmark" title="Close"></i>
                     </button>
                 </div>
-                <div class="tittle">
-                    <h1>Get started</h1>
-                    <p>Create your account and start learning english today!</p>
-                </div>
-                <div class="form-content">
-                    <div class="text-field">
-                        <label for="user">Full name</label>
-                        <input type="text" name="user" placeholder="Hideo Kojima">
-                    </div>
-                    <div class="text-field">
-                        <label for="email">Email</label>
-                        <input type="text" name="email" placeholder="hkojima_69@example.com">
-                    </div>
-                    <div class="text-field">
-                        <label for="password">Password</label>
-                        <input type="password" name="password" placeholder="************">
-                    </div>
-                    <div class="terms">
-                        <input type="checkbox" name="terms-and-cond" id="terms" value="terms-and-cond" required>
-                        <p>I accept the <a href="#">terms and conditions</a>.</p>
-                    </div>
-                    <div class="btn-submit">
-                        <button>Create an account</button>
-                    </div>
-                    <div class="other">
-                        <div class="line"></div>
-                        <p>Or</p>
-                        <div class="line"></div>
-                    </div>
-                    <div class="google-sign-up">
-                        <button class="btn-google"><i class="fa-brands fa-google"></i><p>Sign up with Google</p></button>
-                    </div>
-                </div>
-                <div class="paragraph">
-                    <p>Have an account? <a href="#">Login</a></p>
+                <div class="dynamic-container" id="dynamic-container">
+                    <!-- <div class="paragraph">
+                        <p>Have an account? <a href="#">Login</a></p>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -71,7 +38,7 @@
                     <a href="#" class="menu" title="About us">About</a>
                     <a href="#" class="menu">Contact</a>
                     <a href="#" class="menu" id="menu-login">Login</a>
-                    <a href="#" class="menu" id="menu-sign-up" onclick="OpenModal()">Sign Up</a>
+                    <a href="#" class="menu" id="menu-sign-up">Sign Up</a>
                 </nav>
             </div>
         </div>
@@ -92,6 +59,6 @@
         </div>
     </footer>
     <script src="scripts/script.js"></script>
-    <script src="scripts/modal-logic.js"></script>
+    <script src="scripts/modal.js"></script>
 </body>
 </html>
