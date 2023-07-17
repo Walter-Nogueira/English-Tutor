@@ -74,6 +74,7 @@ body{
     display: flex;
     justify-content: flex-end;
     padding: 10px;
+    margin: 0px 0px 20px 0px;
 }
 .btn-close-modal{
     font-size: 1em;
@@ -98,24 +99,7 @@ body{
     flex-direction: column; 
     align-items: center;
 }
-.terms{
-    display: flex;
-    flex-direction: row;
-    margin: 5px;
-    width: 60%;
-    justify-content: center;
-    align-items: center;
-    font-size: 0.8em;
-    gap: 5px;
-}
-.terms p > a{
-    color: var(--color-mediumTealBlue);
-    text-decoration: underline;
-}
-.btn-submit, .google-submit{
-    width: 60%;
-}
-.btn-submit input{
+.btn-submit button{
     width: 100%;
     height: 40px;
     margin: 10px 0px;
@@ -126,32 +110,13 @@ body{
     background-color: var(--color-marineBlue);
     color: var(--color-white);
     font-size: 1.1em;
-    font-weight: 500;
+    font-weight: 50;
 }
-.btn-submit input:hover{
+.btn-submit button:hover{
     background-color: var(--color-mediumTealBlue);
     color: var(--color-white);
     transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, color 0.3s ease-in-out;
     cursor: pointer;
-}
-.other{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 80%;
-    font-size: 0.9em;
-    color: var(--color-gray2);
-}
-.line{
-    width: 31%;
-    margin: 0px 15px;
-    height: 1px;
-    background-color: var(--color-gray3);
-}
-.google-submit{
-    height: 40px;
-    margin: 20px 0px 75px 0px;
 }
 .google-submit button{
     width: 100%;
@@ -183,4 +148,29 @@ body{
     text-decoration: underline;
     color: var(--color-marineBlue);
     font-weight: 600;
+}
+
+
+.option-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 60%;
+    height: auto;
+    margin: 5px 0px;
+    font-size: 0.83em;
+    font-weight: 500;
+}
+.remember-me-checkbox{
+    display: flex;
+    gap: 5px;
+}
+
+.forgot-password-link a{
+    color: var(--color-marineBlue);
+    text-decoration: none;
+}
+.forgot-password-link a:hover{
+    text-decoration: underline;
 }
