@@ -74,7 +74,7 @@ body{
     display: flex;
     justify-content: flex-end;
     padding: 10px;
-    margin: 0px 0px 20px 0px;
+    margin: 0px 0px 10px 0px;
 }
 .btn-close-modal{
     font-size: 1em;
@@ -138,9 +138,7 @@ body{
     cursor: pointer;
     transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
-.paragraph{
-    margin-bottom: 40px;
-}
+
 .paragraph p{
     font-size: 0.9em;
 }

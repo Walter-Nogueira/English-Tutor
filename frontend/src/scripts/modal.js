@@ -7,6 +7,9 @@ const dynamicContent = document.getElementById('dynamic-container');
 function OpenModal(){
     modal.showModal();
     modal.style.display = 'inline';
+    setTimeout(() => {
+        Validate();
+    }, 0)
 };
 
 function CloseModal(){
@@ -68,14 +71,14 @@ function CreateTitle(title, subtitle){
     return div;
 }
 
-function CreateTextField(labelContent, type, name, autocomplete, placeholder, required){
+function CreateTextField(labelContent, type, name, autocomplete, placeholder, required, warning){
     let div = Object.assign(document.createElement('div'), {classList: ['text-field']});
 
     const textFieldStyle = {
         display: 'flex',
         flexDirection: 'column',
         width: '60%',
-        margin: '10px 0px'
+        margin: '5px 0px'
     };
 
     ApplyStyles(div, textFieldStyle);
@@ -87,7 +90,8 @@ function CreateTextField(labelContent, type, name, autocomplete, placeholder, re
     const labelStyle = {
         fontSize: '0.9em',
         fontWeight: '500',
-        color: '#818181'
+        color: '#818181', 
+        padding: '0px 0px 0px 0px'
     };
 
     ApplyStyles(label, labelStyle);
@@ -110,8 +114,34 @@ function CreateTextField(labelContent, type, name, autocomplete, placeholder, re
     };
 
     ApplyStyles(input, inputStyle);
+
+    const labelContainer = document.createElement('div');
+    labelContainer.classList.add('label-container');
+
+    const labelContainerStyle = {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginTop: '10px',
+        padding: '0px 5px 0px 0px'
+    };
+
+    ApplyStyles(labelContainer, labelContainerStyle);
+
+
+    const warningSign = document.createElement('div');
+    warningSign.classList.add('input-warning-sign');
+    warningSign.innerHTML = warning;
     
-    div.appendChild(label);
+    warningSign.style.fontSize = '0.8em';
+    warningSign.style.padding = '10px 0px 0px 0px';
+    warningSign.style.color = '#F4261B';
+    warningSign.style.display = 'none';
+
+    labelContainer.appendChild(label);
+    labelContainer.appendChild(warningSign);
+
+    div.appendChild(labelContainer);
     div.appendChild(input);
 
     return div;
@@ -237,13 +267,13 @@ function CreateSignUp(){
     ApplyStyles(form, formStyle);
 
     const textFieldAttributes = [
-        {labelContent: "Full name", type: "text", name: "user", autocomplete: "name", placeholder: "Hideo Kojima", required: true},
-        {labelContent: "Email", type: "text", name: "email", autocomplete: "email", placeholder: "hkojima_69@example.com", required: true},
-        {labelContent: "Password", type: "password", name: "password", autocomplete: "new-password", placeholder: "************", required: true}
+        {labelContent: "Full name", type: "text", name: "user", autocomplete: "name", placeholder: "Hideo Kojima", required: true, warning: '<p>use a valid name</p>'},
+        {labelContent: "Email", type: "text", name: "email", autocomplete: "email", placeholder: "hkojima_69@example.com", required: true, warning: '<p>use a valid email</p>'},
+        {labelContent: "Password", type: "password", name: "password", autocomplete: "new-password", placeholder: "************", required: true, warning: '<p>use a valid name</p>'}
     ];
 
     textFieldAttributes.forEach(obj => {
-        form.appendChild(CreateTextField(obj.labelContent, obj.type, obj.name, obj.autocomplete, obj.placeholder, obj.required));
+        form.appendChild(CreateTextField(obj.labelContent, obj.type, obj.name, obj.autocomplete, obj.placeholder, obj.required, obj.warning));
     })
 
     fragment.appendChild(form);
@@ -369,7 +399,6 @@ function CreateLogin(){
         return forgotPasswordLink
     }
 
-
     const optionContainer = document.createElement('div');
     optionContainer.classList.add('option-container');
     optionContainer.appendChild(RememberMe());
@@ -383,9 +412,45 @@ function CreateLogin(){
     let createAccount = document.createElement('div');
     createAccount.classList.add('paragraph');
     createAccount.innerHTML = '<p>Don`t have an account? <a href="#">Sign up</a></p>';
-
     fragment.appendChild(createAccount);
 
     dynamicContent.appendChild(fragment);
 }
 
+
+function Validate(){
+    const inputs = document.querySelectorAll('.text-field input');
+    const warnings = document.querySelectorAll('.input-warning-sign');
+
+    inputs.forEach(input => {
+    input.addEventListener('keyup', (event) => {
+        const inputId  = event.target.id;
+
+        switch (inputId) {
+            case 'user':
+                ValidateName(input, warnings[0]);
+                break;
+            case 'email':
+                // dale funcao
+                break;
+            default:
+                // dale funcao
+                break;
+            }
+            });
+}); 
+}
+
+function ValidateName(input, warningElement){
+
+    let inputValue = input.value;
+    const regex = /^.{0,2}$|^(?=.*\s).+$/;
+
+    if(!regex.test(inputValue)){
+        warningElement.style.display = 'block';
+        input.style.border = '1px solid red';
+    }else{
+        warningElement.style.display = 'none';
+        input.style.border = '1px solid var(--color-gray1)';
+    }
+}
