@@ -21,7 +21,7 @@ function CloseModal(){
 
 document.addEventListener("keydown", function(event) {
     if (event.key === "Escape") {
-      CloseModal();
+        CloseModal();
     }
 });
 
@@ -30,7 +30,7 @@ signUp.addEventListener('click', () => {
     CreateSignUp();
 });
 
-function ApplyStyles(element, style){
+function ApplyStyle(element, style){
     for (let prop in style){
         element.style[prop] = style[prop];
     }
@@ -60,7 +60,7 @@ function CreateTitle(title, subtitle){
         margin: '0px 0px 0px 30px',
     }
 
-    ApplyStyles(div, titleStyle);
+    ApplyStyle(div, titleStyle);
 
     h1.style.fontSize = '1.7em';
     h1.style.fontWeight = '800';
@@ -71,8 +71,9 @@ function CreateTitle(title, subtitle){
     return div;
 }
 
-function CreateTextField(labelContent, type, name, autocomplete, placeholder, required, warning){
-    let div = Object.assign(document.createElement('div'), {classList: ['text-field']});
+function CreateTextField(labelContent, type, name, autocomplete, placeholder, required, warning, customClass){
+    let div = Object.assign(document.createElement('div'));
+    div.classList.add('text-field', customClass);
 
     const textFieldStyle = {
         display: 'flex',
@@ -81,7 +82,7 @@ function CreateTextField(labelContent, type, name, autocomplete, placeholder, re
         margin: '5px 0px'
     };
 
-    ApplyStyles(div, textFieldStyle);
+    ApplyStyle(div, textFieldStyle);
 
     let label = document.createElement('label');
     label.setAttribute("for", name);
@@ -94,7 +95,7 @@ function CreateTextField(labelContent, type, name, autocomplete, placeholder, re
         padding: '0px 0px 0px 0px'
     };
 
-    ApplyStyles(label, labelStyle);
+    ApplyStyle(label, labelStyle);
 
     let input = document.createElement('input');
     input.id = name;
@@ -113,7 +114,7 @@ function CreateTextField(labelContent, type, name, autocomplete, placeholder, re
         outline: 'none'
     };
 
-    ApplyStyles(input, inputStyle);
+    ApplyStyle(input, inputStyle);
 
     const labelContainer = document.createElement('div');
     labelContainer.classList.add('label-container');
@@ -126,7 +127,7 @@ function CreateTextField(labelContent, type, name, autocomplete, placeholder, re
         padding: '0px 5px 0px 0px'
     };
 
-    ApplyStyles(labelContainer, labelContainerStyle);
+    ApplyStyle(labelContainer, labelContainerStyle);
 
 
     const warningSign = document.createElement('div');
@@ -134,8 +135,7 @@ function CreateTextField(labelContent, type, name, autocomplete, placeholder, re
     warningSign.innerHTML = warning;
     
     warningSign.style.fontSize = '0.8em';
-    warningSign.style.padding = '10px 0px 0px 0px';
-    warningSign.style.color = '#F4261B';
+    warningSign.style.color = '#F00700';
     warningSign.style.display = 'none';
 
     labelContainer.appendChild(label);
@@ -175,7 +175,7 @@ function Divider(){
         gap: '10px'
     }
 
-    ApplyStyles(divider, dividerStyle);
+    ApplyStyle(divider, dividerStyle);
 
     const dividerLines = [];
     for(let i = 0; i < 2; i++){
@@ -190,7 +190,7 @@ function Divider(){
             backgroundColor: 'var(--color-gray3)'
         };
         
-        ApplyStyles(line, lineStely);
+        ApplyStyle(line, lineStely);
     }
 
     const span = document.createElement('span');
@@ -207,7 +207,7 @@ function Divider(){
 function createGoogleButton(value){
     const googleSubmit = document.createElement('div');
     googleSubmit.classList.add('google-submit');
-  
+    
     const googleSubmitStyles = {
         width: '60%',
         height: '40px',
@@ -221,7 +221,7 @@ function createGoogleButton(value){
         backgroundColor: 'var(--color-gray3)',
     };
 
-    ApplyStyles(googleSubmit, googleSubmitStyles);
+    ApplyStyle(googleSubmit, googleSubmitStyles);
     
     const googleSubmitInput = document.createElement('button');
     googleSubmitInput.type = 'submit';
@@ -242,7 +242,7 @@ function CreateSignUp(){
     img.src = '../assets/svg_modal/English teacher-amico.svg';
     img.alt = 'English teacher';
     imgModal.appendChild(img);
-   
+    
     const fragment = document.createDocumentFragment();
 
     let title = 'Get started';
@@ -264,17 +264,44 @@ function CreateSignUp(){
         margin: '20px 0px'
     };
 
-    ApplyStyles(form, formStyle);
+    ApplyStyle(form, formStyle);
 
     const textFieldAttributes = [
-        {labelContent: "Full name", type: "text", name: "user", autocomplete: "name", placeholder: "Hideo Kojima", required: true, warning: '<p>use a valid name</p>'},
-        {labelContent: "Email", type: "text", name: "email", autocomplete: "email", placeholder: "hkojima_69@example.com", required: true, warning: '<p>use a valid email</p>'},
-        {labelContent: "Password", type: "password", name: "password", autocomplete: "new-password", placeholder: "************", required: true, warning: '<p>use a valid name</p>'}
+        {
+            labelContent: "Full name", 
+            type: "text", 
+            name: "user", 
+            autocomplete: "name", 
+            placeholder: "Hideo Kojima", 
+            required: true, 
+            warning: '<p>Invalid name</p>', 
+            customClass: 'sign-up-form'
+        },
+        {
+            labelContent: "Email", 
+            type: "text", 
+            name: "email", 
+            autocomplete: "email", 
+            placeholder: "hkojima_69@example.com", 
+            required: true, 
+            warning: '<p>Invalid email</p>',
+            customClass: 'sign-up-form'
+        },
+        {
+            labelContent: "Password", 
+            type: "password", 
+            name: "password", 
+            autocomplete: "new-password", 
+            placeholder: "************", 
+            required: true, 
+            warning: '<p>Invalid password</p>',
+            customClass: 'sign-up-form'
+        }
     ];
 
     textFieldAttributes.forEach(obj => {
-        form.appendChild(CreateTextField(obj.labelContent, obj.type, obj.name, obj.autocomplete, obj.placeholder, obj.required, obj.warning));
-    })
+        form.appendChild(CreateTextField(obj.labelContent, obj.type, obj.name, obj.autocomplete, obj.placeholder, obj.required, obj.warning, obj.customClass));
+    })      
 
     fragment.appendChild(form);
 
@@ -298,8 +325,7 @@ function CreateSignUp(){
         gap: '5px',
         fontSize: '0.8em'
     }
-
-    ApplyStyles(termsContainer, termsContainerStyle);
+    ApplyStyle(termsContainer, termsContainerStyle);
 
     termsContainer.appendChild(checkbox);
 
@@ -346,8 +372,24 @@ function CreateLogin(){
     fragment.appendChild(divTitle);
 
     const textFieldAttributes = [
-        {labelContent: "Email", type: "email", name: "email", autocomplete: "email", placeholder: "hkojima_69@example.com", required: true},
-        {labelContent: "Password", type: 'password', name: 'password', autocomplete: 'password', placeholder: '***********', required: true}
+        {
+            labelContent: "Email", 
+            type: "email", 
+            name: "email", 
+            autocomplete: "email", 
+            placeholder: "hkojima_69@example.com", 
+            required: true,
+            customClass: 'login-form'
+        },
+        {
+            labelContent: "Password", 
+            type: 'password', 
+            name: 'password', 
+            autocomplete: 'password', 
+            placeholder: '***********', 
+            required: true,
+            customClass: 'login-form'
+        }
     ];
 
     const form = document.createElement('form');
@@ -363,7 +405,7 @@ function CreateLogin(){
         margin: '20px 0px'
     };
 
-    ApplyStyles(form, formStyle);
+    ApplyStyle(form, formStyle);
 
     textFieldAttributes.forEach(obj => {
         form.appendChild(CreateTextField(obj.labelContent, obj.type, obj.name, obj.autocomplete, obj.placeholder, obj.required));
@@ -418,39 +460,3 @@ function CreateLogin(){
 }
 
 
-function Validate(){
-    const inputs = document.querySelectorAll('.text-field input');
-    const warnings = document.querySelectorAll('.input-warning-sign');
-
-    inputs.forEach(input => {
-    input.addEventListener('keyup', (event) => {
-        const inputId  = event.target.id;
-
-        switch (inputId) {
-            case 'user':
-                ValidateName(input, warnings[0]);
-                break;
-            case 'email':
-                // dale funcao
-                break;
-            default:
-                // dale funcao
-                break;
-            }
-            });
-}); 
-}
-
-function ValidateName(input, warningElement){
-
-    let inputValue = input.value;
-    const regex = /^.{0,2}$|^(?=.*\s).+$/;
-
-    if(!regex.test(inputValue)){
-        warningElement.style.display = 'block';
-        input.style.border = '1px solid red';
-    }else{
-        warningElement.style.display = 'none';
-        input.style.border = '1px solid var(--color-gray1)';
-    }
-}
